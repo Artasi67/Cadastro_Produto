@@ -4,7 +4,7 @@ import Tela_cadastro_produto from './src/views/Tela_cadastro_produto';
 
 export default function App() {
   return (
-    <View>Hello World!</View>
+    <Tela_cadastro_produto/>
   );
 }
 

@@ -4,7 +4,25 @@ import { View, Text,TextInput, Button, Alert, StyleSheet } from "react-native";
 const Tela_cadastro_produto: React.FC = () => {
 
     return(
-        <View>Olá Mundo!</View>
+        <View style={styles.container}>
+            <Text style={styles.label}>Nome do Produto:</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Digite o nome do produto"
+            />
+            <Text style={styles.label}>Descrição do Produto:</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Digite a descrição do produto"    
+            />
+            <Text style={styles.label}>Valor Unitário:</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Digite o valor unitário"
+                keyboardType="numeric"
+            />
+            <Button title="Salvar"/>
+        </View>
     )
 }
 
