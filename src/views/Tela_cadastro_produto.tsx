@@ -13,7 +13,7 @@ const Tela_cadastro_produto: React.FC = () => {
 
     const {
         control,
-        handlerSubmit,
+        handleSubmit,
         formState: { errors },
         reset
     } = useForm<Produto>();
@@ -86,7 +86,7 @@ const Tela_cadastro_produto: React.FC = () => {
                     />
                 )}
             />
-            <Button title="Salvar"/>
+            <Button title="Salvar" onPress={handleSubmit(enviar)} />
         </View>
     )
 }
