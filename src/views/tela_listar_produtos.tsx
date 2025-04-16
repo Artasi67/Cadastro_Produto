@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, StyleSheet } from 'react-native';
 
 const TelaListarProdutos = () => {
     
@@ -29,16 +29,16 @@ const TelaListarProdutos = () => {
         });
 
      return(
-        <View>
-            <Text>Lista de Produtos</Text>
+        <View style={styles.container}>
+            <Text style={styles.titulo}>Lista de Produtos</Text>
             <FlatList
                 data={produtos}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <View>
-                        <Text>{item.nome}</Text>
+                    <View style={styles.itemContainer}>
+                        <Text style={styles.nome}>{item.nome}</Text>
                         <Text>{item.descricao}</Text>
-                        <Text>R$ {item.valor}</Text>
+                        <Text style={styles.valor}>R$ {item.valor}</Text>
                     </View>
                 )}
             />
@@ -46,5 +46,30 @@ const TelaListarProdutos = () => {
     )
   }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 20,
+        backgroundColor: '#fff'
+    },
+    titulo: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
+    itemContainer: {
+        padding: 10,
+        borderBottomColor: '#ccc'
+    },
+    nome: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    valor: {
+        fontSize: 14,
+        color: 'green'
+    }
+})
 
 export default TelaListarProdutos;
