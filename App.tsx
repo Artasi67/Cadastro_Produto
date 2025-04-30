@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Tela_cadastro_produto from './src/views/Tela_cadastro_produto';
 import Tela_listar_produtos from './src/views/tela_listar_produtos';
+import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 
 export type RootStackParamList = {
@@ -10,16 +10,15 @@ export type RootStackParamList = {
   Listagem: undefined
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Listagem'>
+      <Stack.Navigator>
         <Stack.Screen
           name='Listagem'
           component={Tela_listar_produtos}
-          options={{title: "Listagem de Produtos"}}
         />
         <Stack.Screen
           name='Cadastro'

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View, StyleSheet } from 'react-native';
 
-const TelaListarProdutos = () => {
+const Tela_listar_produtos = () => {
     
     interface Produto{
         id: string;
@@ -11,7 +11,7 @@ const TelaListarProdutos = () => {
         valor: string
     }
 
-    const TelaListarProdutos: React.FC = () => {
+    const Tela_listar_produtos: React.FC = () => {
         const[produtos, setProdutos] = useState<Produto[]>([])
 
         useEffect(()=>{
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TelaListarProdutos;
+export default Tela_listar_produtos;
