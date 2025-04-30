@@ -1,7 +1,12 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { View, Text, TextInput, Button, Alert, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../App";
+import { useNavigation } from "@react-navigation/native";
+
+type prop_navegacao = StackNavigationProp<RootStackParamList, "Cadastro">
 
 interface Produto {
     nome: string;
@@ -10,6 +15,7 @@ interface Produto {
 }
 
 const Tela_cadastro_produto: React.FC = () => {
+    const navegacao = useNavigation<prop_navegacao>();
 
     const {
         control,
@@ -36,6 +42,7 @@ const Tela_cadastro_produto: React.FC = () => {
         catch(error){
             console.log("Erro ao salvar: " + error)
         }
+        navegacao.navigate("Listagem");
     }
 
     return (

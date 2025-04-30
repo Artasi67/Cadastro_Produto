@@ -1,36 +1,45 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { FlatList, Text, View, StyleSheet, Button } from 'react-native';
+import { RootStackParamList } from '../../App';
+import { useNavigation, NavigationContainer } from '@react-navigation/native';
+import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 
-const Tela_listar_produtos = () => {
-    
-    interface Produto{
-        id: string;
-        nome: string;
-        descricao: string;
-        valor: string
+type prop_navegacao = StackNavigationProp<RootStackParamList, "Listagem">
+
+interface Produto {
+    id: string;
+    nome: string;
+    descricao: string;
+    valor: string
+}
+
+const Tela_listar_produtos: React.FC = () => {
+    const navegacao = useNavigation<prop_navegacao>();
+    const [produtos, setProdutos] = useState<Produto[]>([])
+
+    const cadastro = () => {
+        navegacao.navigate("Cadastro")
     }
 
-    const Tela_listar_produtos: React.FC = () => {
-        const[produtos, setProdutos] = useState<Produto[]>([])
-
-        useEffect(()=>{
-            const busca_produtos = async () => {
-            try{
+    useEffect(() => {
+        const busca_produtos = async () => {
+            try {
                 const lista_produtos = await AsyncStorage.getItem('produtos');
-                    if(lista_produtos){
-                        setProdutos(JSON.parse(lista_produtos));
-                        }    
-                    }catch (error){
-                        console.log("Erro ao buscar lista", error)
-                    }
+                if (lista_produtos) {
+                    setProdutos(JSON.parse(lista_produtos));
+                }
+            } catch (error) {
+                console.log("Erro ao buscar lista", error)
             }
-            busca_produtos();
-        });
+        }
+        busca_produtos();
+    });
 
-     return(
+    return (
         <View style={styles.container}>
             <Text style={styles.titulo}>Lista de Produtos</Text>
+            <Button title='Cadastrar Novo Produto' onPress={() => { cadastro() }} />
             <FlatList
                 data={produtos}
                 keyExtractor={(item) => item.id}
@@ -44,8 +53,8 @@ const Tela_listar_produtos = () => {
             />
         </View>
     )
-  }
 }
+
 
 const styles = StyleSheet.create({
     container: {
