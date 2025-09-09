@@ -7,6 +7,12 @@ import Tela_Cadastro_Cliente from './src/views/tela_cadastro_cliente';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
+
+//npx expo install react-native-maps
+
+//AIzaSyAg2VuNR8bXFOswk57yIMaazzZXmh5iwdII
+
+
 export type RootStackParamList = {
   Cadastro: undefined;
   Listagem: undefined;
